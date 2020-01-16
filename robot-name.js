@@ -3,9 +3,12 @@
 
 export class Robot { 
   constructor() {
-    // this.name can only be set here
-    this.name = this.releaseNames();
+    this._name = this.releaseNames();
     this.allNames = [];
+  }
+
+  get name() {
+    return this._name
   }
   
   releaseNames(name = '') {
@@ -29,13 +32,11 @@ export class Robot {
   reset() {
     this.allNames.push(this.name);
     let tempName = this.releaseNames();
-    
     if (this.allNames.includes(tempName)) {
       return this.reset();
     }
-
-    this.name = tempName;
-  }
+    this._name = tempName;
+  } 
 }
 
 Robot.releaseNames = () => {
